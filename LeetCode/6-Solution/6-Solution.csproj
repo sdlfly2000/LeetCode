@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>LeetCode_6_Solution</RootNamespace>
+    <AssemblyName>LeetCode-6-Solution</AssemblyName>
+  </PropertyGroup>
+
+</Project>
