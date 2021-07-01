@@ -83,5 +83,19 @@ namespace LeetCode_10_Test
             // Assert
             Assert.IsFalse(output);
         }
+
+        [TestMethod, TestCategory("UnitTest")]
+        public void SolutionTest_6()
+        {
+            // Arrange
+            var s = "mississippi";
+            var p = "mis*is*ip*.";
+
+            // Act
+            var output = _solution.IsMatch(s, p);
+
+            // Assert
+            Assert.IsTrue(output);
+        }
     }
 }
