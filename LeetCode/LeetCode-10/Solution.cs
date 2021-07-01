@@ -34,11 +34,6 @@
                     {
                         return false;
                     }
-
-                    if (i > 0 && p[i - 1] == '*')
-                    {
-                        return false;
-                    }
                 }
 
                 if (p[i] == '*')
@@ -50,6 +45,11 @@
                     }
 
                     continue;
+                }
+
+                if (i == p.Length - 1 && sIndex + 1 < s.Length - 1)
+                {
+                    return false;
                 }
 
                 sIndex++;
