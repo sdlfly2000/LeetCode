@@ -97,5 +97,20 @@ namespace LeetCode_10_Test
             // Assert
             Assert.IsTrue(output);
         }
+
+
+        [TestMethod, TestCategory("UnitTest")]
+        public void SolutionTest_7()
+        {
+            // Arrange
+            var s = "abcd";
+            var p = "d*";
+
+            // Act
+            var output = _solution.IsMatch(s, p);
+
+            // Assert
+            Assert.IsFalse(output);
+        }
     }
 }
