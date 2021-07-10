@@ -31,6 +31,34 @@ namespace LeetCode_10
                 {
                     if(!IsMatchConst(constString, s, markedTarget))
                     {
+                        if (i == patternIndex.Count -1)
+                        {
+                            var lastAsterick = '\0';
+                            var lastIndex = i > 0 ? i - 1 : 0;
+                            if (asterickPatterns.TryGetValue(patternIndex[lastIndex], out lastAsterick))
+                            {
+                                if (s.EndsWith(constString))
+                                {
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        
+                        }
+                        return false;
+                    }
+
+                    continue;
+                }
+
+                var asterickChar = '\0';
+                if (asterickPatterns.TryGetValue(patternIndex[i], out asterickChar))
+                {
+                    if (!IsMatchAsterick(asterickChar, s, markedTarget))
+                    {
                         return false;
                     }
 
@@ -40,17 +68,6 @@ namespace LeetCode_10
                 if (dotPatterns.Contains(patternIndex[i]))
                 {
                     if (!IsMatchDot(s, markedTarget))
-                    {
-                        return false;
-                    }
-
-                    continue;
-                }
-
-                var asterickChar = '\0';
-                if(asterickPatterns.TryGetValue(patternIndex[i], out asterickChar))
-                {
-                    if (!IsMatchAsterick(asterickChar, s, markedTarget))
                     {
                         return false;
                     }
@@ -96,6 +113,13 @@ namespace LeetCode_10
 
                 startCount++;
 
+                if(asterickChar == '.')
+                {
+                    isFound = true;
+                    markedTarget[i] = 1;
+                    continue;
+                }
+
                 if(target[i] == asterickChar)
                 {
                     if (!isFound && startCount > 1)
@@ -125,7 +149,7 @@ namespace LeetCode_10
 
                 if (startCount > 0)
                 {
-                    for (var i = lastProcessedIndex; i >= 0 ; i--)
+                    for (var i = lastProcessedIndex; i > (lastProcessedIndex - startCount); i--)
                     {
                         markedTarget[i] = 0;
                     }
@@ -200,8 +224,9 @@ namespace LeetCode_10
             patterns.AddRange(constPattern.Keys.ToList());
             patterns.AddRange(dotPattern);
             patterns.AddRange(asterickPattern.Keys.ToList());
-            patterns.Sort();
-            return patterns;
+            var sortedPatterns = patterns.Distinct().ToList();
+            sortedPatterns.Sort();
+            return sortedPatterns;
         }
 
         private Dictionary<int, string> GetConstPattern(string p, Dictionary<int, char> asterickPattern, IList<int> dotPattern)

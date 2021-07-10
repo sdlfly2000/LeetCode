@@ -182,5 +182,47 @@ namespace LeetCode_10_Test
             // Assert
             Assert.IsTrue(output);
         }
+
+        [TestMethod, TestCategory("UnitTest")]
+        public void SolutionTest_13()
+        {
+            // Arrange
+            var s = "aaa";
+            var p = "ab*a*c*a";
+
+            // Act
+            var output = _solution.IsMatch(s, p);
+
+            // Assert
+            Assert.IsTrue(output);
+        }
+
+        [TestMethod, TestCategory("UnitTest")]
+        public void SolutionTest_14()
+        {
+            // Arrange
+            var s = "aaa";
+            var p = ".*";
+
+            // Act
+            var output = _solution.IsMatch(s, p);
+
+            // Assert
+            Assert.IsTrue(output);
+        }
+
+        [TestMethod, TestCategory("UnitTest")]
+        public void SolutionTest_15()
+        {
+            // Arrange
+            var s = "a";
+            var p = "ab*a";
+
+            // Act
+            var output = _solution.IsMatch(s, p);
+
+            // Assert
+            Assert.IsFalse(output);
+        }
     }
 }
