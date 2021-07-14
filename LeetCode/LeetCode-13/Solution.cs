@@ -22,8 +22,12 @@
                 return 1;
             }
 
-            return (current == 'I' || current == 'X' || current == 'C') &&
-                (previous == 'V' || previous == 'X' || previous == 'L' || previous == 'C' || previous == 'D' || previous == 'M')
+            return (current == 'I' && previous == 'V') || 
+                (current == 'I' && previous == 'X') || 
+                (current == 'X' && previous == 'L' ) ||
+                (current == 'X' && previous == 'C') ||
+                (current == 'C' && previous == 'D') ||
+                (current == 'C' && previous == 'M')                
                 ? -1
                 : 1;
 
