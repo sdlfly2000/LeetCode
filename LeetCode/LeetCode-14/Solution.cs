@@ -8,10 +8,23 @@ namespace LeetCode_14
     {
         public string LongestCommonPrefix(string[] strs)
         {
-            for(var i = 0; i < strs.Length; i++)
+            var prefix = new StringBuilder();
+
+            for (var j = 0; j < strs[0].Length; j++)
             {
-                var tempChar = strs[i]
+                prefix.Append(strs[0][j]);
+
+                for (var i = 1; i < strs.Length; i++)
+                {
+                    if ((strs[i].Length - 1) < j || strs[0][j] != strs[i][j])
+                    {
+                        prefix.Remove(prefix.Length - 1, 1);
+                        return prefix.ToString();
+                    }
+                }
             }
+
+            return prefix.ToString();
         }
     }
 }
