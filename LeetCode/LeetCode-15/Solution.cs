@@ -11,22 +11,39 @@ namespace LeetCode_15
             sortedNums.Sort();
             var startIndex = 0;
             var endIndex = nums.Length - 1;
+            var equalFound = false;
 
             while(startIndex < endIndex)
             {
-                var group = GetGroup(sortedNums.GetRange(startIndex, endIndex));
-                if(group != null)
+                var group = GetGroup(sortedNums.GetRange(startIndex, endIndex - startIndex + 1)); 
+
+                if (group != null && !Exist(retList, group))
                 {
                     retList.Add(group);
                 }
 
-                if( Abs(sortedNums[startIndex]) > Abs(sortedNums[endIndex]))
+                if (equalFound)
+                {
+                    startIndex--;
+                    endIndex--;
+                    equalFound = false;
+                    continue;
+                }
+
+                if (Abs(sortedNums[startIndex]) > Abs(sortedNums[endIndex]))
                 {
                     startIndex++;
+                    equalFound = false;
+                }
+                else if(Abs(sortedNums[startIndex]) == Abs(sortedNums[endIndex]))
+                {
+                    startIndex++;
+                    equalFound = true;
                 }
                 else
                 {
                     endIndex--;
+                    equalFound = false;
                 }
             }
 
@@ -55,6 +72,32 @@ namespace LeetCode_15
             return number > 0 
                 ? number 
                 : number * (-1);
+        }
+
+        private bool Exist(IList<IList<int>> container, IList<int> target)
+        {
+            var isFound = false;
+            foreach(var item in container)
+            {
+                if (!isFound)
+                {
+                    if (item.Count == target.Count)
+                    {
+                        var i = 0;
+                        while (item[i] == target[i])
+                        {
+                            i++;
+                            if (i >= item.Count)
+                            {
+                                isFound = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return isFound;
         }
     }
 }
