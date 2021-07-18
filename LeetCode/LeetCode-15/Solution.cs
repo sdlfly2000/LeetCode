@@ -9,75 +9,62 @@ namespace LeetCode_15
             var retList = new List<IList<int>>();
             var sortedNums = new List<int>(nums);
             sortedNums.Sort();
-            var startIndex = 0;
-            var endIndex = nums.Length - 1;
-            var equalFound = false;
 
-            while(startIndex < endIndex)
+            for(var i = 0; i < sortedNums.Count - 2; i++)
             {
-                var group = GetGroup(sortedNums.GetRange(startIndex, endIndex - startIndex + 1)); 
-
-                if (group != null && !Exist(retList, group))
+                var groups = GetGroups(sortedNums.GetRange(i + 1, sortedNums.Count - i - 1), sortedNums[i]);
+                foreach (var group in groups)
                 {
-                    retList.Add(group);
-                }
-
-                if (equalFound)
-                {
-                    startIndex--;
-                    endIndex--;
-                    equalFound = false;
-                    continue;
-                }
-
-                if (Abs(sortedNums[startIndex]) > Abs(sortedNums[endIndex]))
-                {
-                    startIndex++;
-                    equalFound = false;
-                }
-                else if(Abs(sortedNums[startIndex]) == Abs(sortedNums[endIndex]))
-                {
-                    startIndex++;
-                    equalFound = true;
-                }
-                else
-                {
-                    endIndex--;
-                    equalFound = false;
-                }
-            }
+                    if (!Exist(retList, group))
+                    {
+                        retList.Add(group);
+                    }
+                }                
+            }          
 
             return retList;
         }
 
-        private IList<int> GetGroup(IList<int> sortedSubNumbers)
+        private IList<IList<int>> GetGroups(IList<int> sortedSubNumbers, int targetNumber)
         {
-            var leftNumber = sortedSubNumbers[0];
-            var rightNumber = sortedSubNumbers[sortedSubNumbers.Count - 1];
-            var sumLeftAndRight = rightNumber + leftNumber;
+            var retList = new List<IList<int>>();
+            var startIndex = 0;
+            var endIndex = sortedSubNumbers.Count - 1;
 
-            for(var i = 1; i < sortedSubNumbers.Count - 1; i++)
+            while(startIndex < endIndex)
             {
-                if((sumLeftAndRight + sortedSubNumbers[i]) == 0)
+                if((sortedSubNumbers[startIndex] + sortedSubNumbers[endIndex] + targetNumber) > 0)
                 {
-                    return new List<int> { leftNumber, sortedSubNumbers[i], rightNumber };
+                    endIndex--;
+                }
+                else if ((sortedSubNumbers[startIndex] + sortedSubNumbers[endIndex] + targetNumber) == 0)
+                {
+                    var group = new List<int> { targetNumber, sortedSubNumbers[startIndex], sortedSubNumbers[endIndex] };
+
+                    if (!Exist(retList, group))
+                    {
+                        retList.Add(group);
+                    }
+
+                    startIndex++;
+                    endIndex--;
+
+                    while ((startIndex < endIndex) && (sortedSubNumbers[startIndex] == sortedSubNumbers[startIndex - 1])) startIndex++;
+                    while ((startIndex < endIndex) && (sortedSubNumbers[endIndex] == sortedSubNumbers[endIndex + 1])) endIndex--;
+                }
+                else
+                {
+                    startIndex++;
                 }
             }
-
-            return null;
-        }
-
-        private int Abs(int number)
-        {
-            return number > 0 
-                ? number 
-                : number * (-1);
+            
+            return retList;
         }
 
         private bool Exist(IList<IList<int>> container, IList<int> target)
         {
             var isFound = false;
-            foreach(var item in container)
+            foreach (var item in container)
             {
                 if (!isFound)
                 {
