@@ -16,28 +16,40 @@ namespace LeetCode_16
             var mostCloseSum = 0;
             var diffTarget = int.MaxValue;
 
+            var isIncreaseStartIndex = false;
+
             while (startIndex < endIndex)
             {
-                var sumStartAndEnd = numList[startIndex] + numList[endIndex];
-
-                if(sumStartAndEnd >= target &&
-                    (endIndex - startIndex + 1) > 2)
+                var moveList = numList.GetRange(startIndex + 1, endIndex - startIndex - 1);
+                if(moveList.Count == 0)
                 {
-                    CheckClosest(sumStartAndEnd, numList[startIndex + 1], target, mostCloseSum, diffTarget, out mostCloseSum, out diffTarget);
-                    endIndex--;
-                    continue;
-                }else if (sumStartAndEnd < target)
-                {
-                    var tempList = numList.GetRange(startIndex + 1, endIndex - startIndex - 1);
-
-                    tempList.ForEach(temp =>
-                    {
-                        CheckClosest(sumStartAndEnd, temp, target, mostCloseSum, diffTarget, out mostCloseSum, out diffTarget);
-                    });
-
-                    startIndex++;
+                    break;
                 }
-                else
+                for(var moveIndex = 0; moveIndex < moveList.Count; moveIndex++)
+                {
+                    var tempSum = numList[startIndex] + moveList[moveIndex] + numList[endIndex];
+
+                    if(tempSum == target)
+                    {
+                        return tempSum;
+                    }
+
+                    if(tempSum > target)
+                    {
+                        CheckClosest(numList[startIndex] + numList[endIndex], moveList[moveIndex], target, mostCloseSum, diffTarget, out mostCloseSum, out diffTarget);
+                        isIncreaseStartIndex = false;
+                        endIndex--;
+                        break;
+                    }
+
+                    if(tempSum < target)
+                    {
+                        CheckClosest(numList[startIndex] + numList[endIndex], moveList[moveIndex], target, mostCloseSum, diffTarget, out mostCloseSum, out diffTarget);
+                        isIncreaseStartIndex = true;
+                    }
+                }
+
+                if (isIncreaseStartIndex)
                 {
                     startIndex++;
                 }

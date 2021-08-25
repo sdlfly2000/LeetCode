@@ -46,5 +46,38 @@ namespace LeetCode_16_Test
 
             Assert.AreEqual(-2, result);
         }
+
+        [TestMethod]
+        public void TestMethod4()
+        {
+            var num = new int[] { 1, -3, 3, 5, 4, 1};
+            var target = 1;
+
+            var result = _solution.ThreeSumClosest(num, target);
+
+            Assert.AreEqual(1, result);
+        }
+
+        [TestMethod]
+        public void TestMethod5()
+        {
+            var num = new int[] { 0, 2, 1, -3};
+            var target = 1;
+
+            var result = _solution.ThreeSumClosest(num, target);
+
+            Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
+        public void TestMethod6()
+        {
+            var num = new int[] { 1, 2, 4, 8, 16, 32, 64, 128 };
+            var target = 82;
+
+            var result = _solution.ThreeSumClosest(num, target);
+
+            Assert.AreEqual(82, result);
+        }
     }
 }
