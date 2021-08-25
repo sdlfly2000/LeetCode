@@ -79,5 +79,16 @@ namespace LeetCode_16_Test
 
             Assert.AreEqual(82, result);
         }
+
+        [TestMethod]
+        public void TestMethod7()
+        {
+            var num = new int[] { 4, 0, 5, -5, 3, 3, 0, -4, -5 };
+            var target = -2;
+
+            var result = _solution.ThreeSumClosest(num, target);
+
+            Assert.AreEqual(-2, result);
+        }
     }
 }

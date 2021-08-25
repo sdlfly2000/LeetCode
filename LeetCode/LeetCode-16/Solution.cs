@@ -10,48 +10,28 @@ namespace LeetCode_16
             var numList = new List<int>(nums);
             numList.Sort();
 
-            var startIndex = 0;
-            var endIndex = numList.Count - 1;
-
             var mostCloseSum = 0;
             var diffTarget = int.MaxValue;
 
-            var isIncreaseStartIndex = false;
-
-            while (startIndex < endIndex)
+            for(var i = 0; i < numList.Count; i++)
             {
-                var moveList = numList.GetRange(startIndex + 1, endIndex - startIndex - 1);
-                if(moveList.Count == 0)
+                for(var j = i+1; j<numList.Count; j++)
                 {
-                    break;
-                }
-                for(var moveIndex = 0; moveIndex < moveList.Count; moveIndex++)
-                {
-                    var tempSum = numList[startIndex] + moveList[moveIndex] + numList[endIndex];
-
-                    if(tempSum == target)
+                    for(var k= j+ 1; k < numList.Count; k++)
                     {
-                        return tempSum;
-                    }
+                        var tempSum = numList[i] + numList[j] + numList[k];
 
-                    if(tempSum > target)
-                    {
-                        CheckClosest(numList[startIndex] + numList[endIndex], moveList[moveIndex], target, mostCloseSum, diffTarget, out mostCloseSum, out diffTarget);
-                        isIncreaseStartIndex = false;
-                        endIndex--;
-                        break;
-                    }
+                        if (tempSum == target)
+                        {
+                            return tempSum;
+                        }
 
-                    if(tempSum < target)
-                    {
-                        CheckClosest(numList[startIndex] + numList[endIndex], moveList[moveIndex], target, mostCloseSum, diffTarget, out mostCloseSum, out diffTarget);
-                        isIncreaseStartIndex = true;
+                        if(Math.Abs(tempSum - target) < Math.Abs(diffTarget))
+                        {
+                            mostCloseSum = tempSum;
+                            diffTarget = tempSum - target;
+                        }
                     }
-                }
-
-                if (isIncreaseStartIndex)
-                {
-                    startIndex++;
                 }
             }
 
