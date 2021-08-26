@@ -2,13 +2,17 @@
 
 namespace LeetCode_17
 {
-    using System.Linq;
-    using System.Text;
-
     public class Solution
     {
+        private int MaxRow;
+
         public IList<string> LetterCombinations(string digits)
         {
+            if (digits.Equals(string.Empty))
+            {
+                return new List<string>();
+            }
+
             var letterMap = InitialDigitMap();
 
             var retList = new List<string>();
@@ -17,32 +21,35 @@ namespace LeetCode_17
 
             var matrix = new List<char[]>();
 
-            var temp = new StringBuilder();
-
             for (var i = 0; i < len; i++)
             {
                 matrix.Add(letterMap[digits[i]]);
             }
 
-            for (var bigRow = 0; bigRow < matrix.Count; bigRow++)
-            {
-                for (var column = 0; column < matrix[bigRow].Length; column++)
-                {
-                    temp.Clear();
-                    temp.Append(matrix[bigRow][column]);
-                    for (var row = 1; row < matrix.Count; row++)
-                    {
-                        if (column < matrix[row].Length)
-                        {
-                            temp.Append(matrix[row][column]);
-                        }
+            MaxRow = matrix.Count - 1;
+            var total = string.Empty;
 
-                        retList.Add(temp.ToString());
-                    }
-                }
-            }
+            Travel(0, total, retList, matrix);
 
             return retList;
+        }
+
+        private void Travel(int row, string total, IList<string> finalReturn, IList<char[]> matrix)
+        {
+            if (row == MaxRow)
+            {
+                for(var column = 0; column < matrix[MaxRow].Length; column++)
+                {
+                    finalReturn.Add(total + matrix[row][column]);
+                }
+
+                return;
+            }
+
+            for (var column = 0; column < matrix[row].Length; column++)
+            {
+                Travel(row + 1, total + matrix[row][column], finalReturn, matrix);
+            }
         }
 
         private Dictionary<char, char[]> InitialDigitMap()
