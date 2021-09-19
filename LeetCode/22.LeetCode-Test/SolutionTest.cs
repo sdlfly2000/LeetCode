@@ -6,12 +6,12 @@ namespace _22.LeetCode_Test
     [TestClass]
     public class SolutionTest
     {
-        private Solution _solution;
+        private Solution2 _solution;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _solution = new Solution();
+            _solution = new Solution2();
         }
 
         [TestMethod]
