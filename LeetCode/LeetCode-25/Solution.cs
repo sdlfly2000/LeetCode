@@ -59,6 +59,7 @@
             {
                 if(nodes[i] != null)
                 {
+                    nodes[i].next = null;
                     head.next = nodes[i];
                     head = head.next;
                 }
