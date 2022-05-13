@@ -10,17 +10,11 @@ namespace LeetCode_30
             var numOfWord = words.Length > 0 ? words[0].Length : 0;
             var numOfTestString = numOfWord * words.Length;
 
-            for(var indexWord = 0; indexWord < words.Length; indexWord++)
-            {
-                if(!checkWord.TryAdd(words[indexWord], 1))
-                {
-                    checkWord[words[indexWord]] += 1;
-                }
-            }
+            InitialCheckWord(checkWord, words);
 
             var retList = new List<int>();
 
-            for(var i = 0; i < s.Length - numOfTestString; i++)
+            for(var i = 0; i <= s.Length - numOfTestString; i++)
             {
                 var testString = s[i..(i + numOfTestString)];
 
@@ -28,11 +22,14 @@ namespace LeetCode_30
                 {
                     retList.Add(i);
                 }
+
+                InitialCheckWord(checkWord, words);
             }
 
             return retList;
         }
 
+        #region Private Methods
         private bool IsValid(string target, IDictionary<string, int> checkWord, int wordCount)
         {
             for(var i = 0; i < target.Length; i += wordCount)
@@ -43,9 +40,32 @@ namespace LeetCode_30
                 {
                     return false;
                 }
+
+                if (findCount > 0)
+                {
+                    checkWord[testString] = findCount - 1;
+                }
+                else
+                {
+                    return false;
+                }
             }
 
             return true;
         }
+
+        private void InitialCheckWord(IDictionary<string, int> checkWord, string[] words)
+        {
+            checkWord.Clear();
+            for (var indexWord = 0; indexWord < words.Length; indexWord++)
+            {
+                if (!checkWord.TryAdd(words[indexWord], 1))
+                {
+                    checkWord[words[indexWord]] += 1;
+                }
+            }
+        }
+
+        #endregion
     }
 }
