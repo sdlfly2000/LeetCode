@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31410.357
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "6-Solution", "6-Solution\6-Solution.csproj", "{B4F1E9BA-79DE-43C1-AD6F-F052321683D1}"
 EndProject
@@ -93,9 +93,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCode-30", "LeetCode-30\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "30.LeetCode-Test", "30.LeetCode-Test\30.LeetCode-Test.csproj", "{184667CD-5E84-497E-92B0-4C30D1D2AD3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCode-31", "LeetCode-31\LeetCode-31.csproj", "{98336144-154D-4ECC-85C0-3776468368E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetCode-31", "LeetCode-31\LeetCode-31.csproj", "{98336144-154D-4ECC-85C0-3776468368E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "31.LeetCode-Test", "31.LeetCode-Test\31.LeetCode-Test.csproj", "{DFE4BF64-9E83-4087-9AD9-0AB74DFFC67A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "31.LeetCode-Test", "31.LeetCode-Test\31.LeetCode-Test.csproj", "{DFE4BF64-9E83-4087-9AD9-0AB74DFFC67A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCode-32", "LeetCode-32\LeetCode-32.csproj", "{68DC6222-7348-41FD-A29D-84AAAD2F361B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "32.LeetCode-Test", "32.LeetCode-Test\32.LeetCode-Test.csproj", "{D36A692A-B406-4776-9199-CEC92C5A8625}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -287,6 +291,14 @@ Global
 		{DFE4BF64-9E83-4087-9AD9-0AB74DFFC67A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFE4BF64-9E83-4087-9AD9-0AB74DFFC67A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFE4BF64-9E83-4087-9AD9-0AB74DFFC67A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68DC6222-7348-41FD-A29D-84AAAD2F361B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68DC6222-7348-41FD-A29D-84AAAD2F361B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68DC6222-7348-41FD-A29D-84AAAD2F361B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68DC6222-7348-41FD-A29D-84AAAD2F361B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D36A692A-B406-4776-9199-CEC92C5A8625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D36A692A-B406-4776-9199-CEC92C5A8625}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D36A692A-B406-4776-9199-CEC92C5A8625}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D36A692A-B406-4776-9199-CEC92C5A8625}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -313,6 +325,7 @@ Global
 		{8276CA16-FFD8-4450-9719-FAE8EBEE4DEE} = {889D9B21-FCBC-4D79-95A0-ACC60AB52CC2}
 		{184667CD-5E84-497E-92B0-4C30D1D2AD3A} = {889D9B21-FCBC-4D79-95A0-ACC60AB52CC2}
 		{DFE4BF64-9E83-4087-9AD9-0AB74DFFC67A} = {889D9B21-FCBC-4D79-95A0-ACC60AB52CC2}
+		{D36A692A-B406-4776-9199-CEC92C5A8625} = {889D9B21-FCBC-4D79-95A0-ACC60AB52CC2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D5CBC21B-4FF1-4159-831E-371746EC1CD3}
